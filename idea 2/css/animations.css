@@ -1,0 +1,76 @@
+/* ==========================================================================
+   ANIMATIONS & TRANSITIONS
+   Abhay Singh — Creative Portfolio (Cinematic Editorial)
+   ========================================================================== */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-cinematic), transform 0.8s var(--ease-cinematic);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 {
+  transition-delay: 0.1s;
+}
+
+.delay-2 {
+  transition-delay: 0.2s;
+}
+
+.delay-3 {
+  transition-delay: 0.3s;
+}
+
+.delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* Subtle Mask Reveal for Typography */
+.text-mask-reveal {
+  overflow: hidden;
+  display: block;
+}
+
+.text-mask-reveal > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 0.9s var(--ease-cinematic);
+}
+
+.reveal-on-scroll.is-revealed .text-mask-reveal > span {
+  transform: translateY(0);
+}
+
+/* Micro Focus Glow */
+.cinematic-glow-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.cinematic-glow-hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+}
+
+.cinematic-glow-hover:hover::after {
+  left: 150%;
+}
