@@ -383,10 +383,12 @@
 .poster-fallback {
   z-index: 1;
   transition: opacity var(--transition-slow);
+  pointer-events: none;
 }
 
 .canvas-fallback {
   z-index: 2;
+  pointer-events: none;
 }
 
 .project-media-container.is-playing .poster-fallback {

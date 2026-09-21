@@ -30,27 +30,35 @@
     {
       id: 'project-01',
       number: '01 / 01',
-      title: 'CHRONICLES OF LIGHT',
+      title: 'ABHAY — THE BEGINNING',
       year: '2026',
       category: 'VIDEO EDITING',
-      roles: ['EDITING', 'MOTION GRAPHICS', 'COLOR', 'SOUND'],
-      toolsUsed: ['Adobe Premiere Pro', 'Adobe After Effects', 'Adobe Illustrator'],
+      roles: ['VIDEO EDITING', 'VISUAL STORYTELLING', 'CINEMATOGRAPHY'],
+      toolsUsed: ['Premiere Pro', 'After Effects', 'Self-Directed'],
       videoSrc: 'assets/video/project-1.mp4',
       posterSrc: 'assets/images/featured-project-poster.svg',
       aspectRatio: '16:9',
-      shortDescription: 'A narrative-driven edit exploring isolation, tempo, and optical contrast. Constructed to examine how silence and micro-pacing shape viewer tension across a cinematic sequence.',
+      shortDescription: "A cinematic introduction to my creative journey. A short visual piece introducing who I am, what I create, and where I'm headed — beginning with video editing and evolving toward filmmaking, cinematography, and storytelling. Built as the first frame of a long-term creative journey.",
       processNotes: [
         {
-          aspect: 'Pacing & Cadence',
-          note: 'Held cuts on subject micro-reactions instead of immediate action responses, allowing ambient tension to accumulate naturally.'
+          aspect: 'Concept',
+          note: 'Personal Introduction'
         },
         {
-          aspect: 'Audio Cohesion',
-          note: 'Built a multi-layered atmospheric soundbed using Premiere Pro and Audition to give visual transitions physical weight.'
+          aspect: 'Editing',
+          note: 'Premiere Pro'
         },
         {
-          aspect: 'Visual Polish & Titles',
-          note: 'Designed typography and lower-thirds in Adobe Illustrator, brought into After Effects for subtle tracking and film grain integration.'
+          aspect: 'Motion & VFX',
+          note: 'After Effects'
+        },
+        {
+          aspect: 'Visual Direction',
+          note: 'Self-Directed'
+        },
+        {
+          aspect: 'Purpose',
+          note: 'Creative Introduction / Portfolio Piece'
         }
       ],
       isFeatured: true
@@ -342,10 +350,15 @@
     }
 
     if (video) {
-      if (video.readyState >= 2) {
+      if (video.readyState >= 1) {
         hasRealVideo = true;
         if (canvasFallback) canvasFallback.style.display = 'none';
       }
+
+      video.addEventListener('loadedmetadata', () => {
+        hasRealVideo = true;
+        if (canvasFallback) canvasFallback.style.display = 'none';
+      });
 
       video.addEventListener('loadeddata', () => {
         hasRealVideo = true;
@@ -364,6 +377,8 @@
 
       // Synchronize with native video state events
       video.addEventListener('play', () => {
+        hasRealVideo = true;
+        if (canvasFallback) canvasFallback.style.display = 'none';
         updatePlayStateUI(true);
       });
 
@@ -394,14 +409,31 @@
         e.stopPropagation();
       }
 
-      if (video && hasRealVideo) {
+      if (video) {
         if (video.paused || video.ended) {
-          video.play().catch(() => {
-            canvasController?.start();
-            updatePlayStateUI(true);
-          });
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              hasRealVideo = true;
+              if (canvasFallback) canvasFallback.style.display = 'none';
+              updatePlayStateUI(true);
+            }).catch(() => {
+              // Retry muted if iOS blocks unmuted playback
+              video.muted = true;
+              if (muteButton) muteButton.textContent = 'UNMUTE';
+              video.play().then(() => {
+                hasRealVideo = true;
+                if (canvasFallback) canvasFallback.style.display = 'none';
+                updatePlayStateUI(true);
+              }).catch(() => {
+                canvasController?.start();
+                updatePlayStateUI(true);
+              });
+            });
+          }
         } else {
           video.pause();
+          updatePlayStateUI(false);
         }
       } else {
         const nextState = !isPlaying;

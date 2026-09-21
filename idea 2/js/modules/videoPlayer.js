@@ -155,10 +155,15 @@ export function initVideoPlayer() {
   }
 
   if (video) {
-    if (video.readyState >= 2) {
+    if (video.readyState >= 1) {
       hasRealVideo = true;
       if (canvasFallback) canvasFallback.style.display = 'none';
     }
+
+    video.addEventListener('loadedmetadata', () => {
+      hasRealVideo = true;
+      if (canvasFallback) canvasFallback.style.display = 'none';
+    });
 
     video.addEventListener('loadeddata', () => {
       hasRealVideo = true;
@@ -177,6 +182,8 @@ export function initVideoPlayer() {
 
     // Synchronize with native video state events
     video.addEventListener('play', () => {
+      hasRealVideo = true;
+      if (canvasFallback) canvasFallback.style.display = 'none';
       updatePlayStateUI(true);
     });
 
@@ -207,14 +214,31 @@ export function initVideoPlayer() {
       e.stopPropagation();
     }
 
-    if (video && hasRealVideo) {
+    if (video) {
       if (video.paused || video.ended) {
-        video.play().catch(() => {
-          canvasController?.start();
-          updatePlayStateUI(true);
-        });
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            hasRealVideo = true;
+            if (canvasFallback) canvasFallback.style.display = 'none';
+            updatePlayStateUI(true);
+          }).catch(() => {
+            // Retry muted if iOS blocks unmuted playback
+            video.muted = true;
+            if (muteButton) muteButton.textContent = 'UNMUTE';
+            video.play().then(() => {
+              hasRealVideo = true;
+              if (canvasFallback) canvasFallback.style.display = 'none';
+              updatePlayStateUI(true);
+            }).catch(() => {
+              canvasController?.start();
+              updatePlayStateUI(true);
+            });
+          });
+        }
       } else {
         video.pause();
+        updatePlayStateUI(false);
       }
     } else {
       const nextState = !isPlaying;
