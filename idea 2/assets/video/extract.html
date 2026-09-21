@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Frame Extractor</title>
+</head>
+<body style="background:#111; color:#fff; font-family:sans-serif; padding:20px;">
+  <h2>Extracting Cinematic Frames from project-1.mp4...</h2>
+  <div id="status">Loading video...</div>
+  <video id="v" src="project-1.mp4" muted playsinline style="display:none;"></video>
+  <canvas id="c" width="1920" height="1080" style="display:none;"></canvas>
+
+  <script>
+    const v = document.getElementById('v');
+    const c = document.getElementById('c');
+    const ctx = c.getContext('2d');
+    const status = document.getElementById('status');
+
+    // Timestamps to sample
+    const timestamps = [2.0, 4.0, 6.5, 9.0, 14.0, 18.0];
+    let currentIndex = 0;
+
+    v.addEventListener('loadedmetadata', () => {
+      status.textContent = 'Metadata loaded. Duration: ' + v.duration + 's. Seeking...';
+      processNext();
+    });
+
+    function processNext() {
+      if (currentIndex >= timestamps.length) {
+        status.textContent = 'ALL FRAMES EXTRACTED AND POSTED TO SERVER!';
+        fetch('/done', { method: 'POST' });
+        return;
+      }
+
+      const t = timestamps[currentIndex];
+      status.textContent = 'Seeking to ' + t + 's (' + (currentIndex + 1) + '/' + timestamps.length + ')...';
+      v.currentTime = t;
+    }
+
+    v.addEventListener('seeked', () => {
+      // Draw pristine raw video frame directly to 1920x1080 canvas
+      ctx.drawImage(v, 0, 0, 1920, 1080);
+      const dataUrl = c.toDataURL('image/jpeg', 0.94);
+      const t = timestamps[currentIndex];
+      
+      fetch('/save-frame?t=' + t, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: dataUrl
+      }).then(() => {
+        currentIndex++;
+        processNext();
+      }).catch(err => {
+        status.textContent = 'Error saving frame: ' + err;
+      });
+    });
+  </script>
+</body>
+</html>
