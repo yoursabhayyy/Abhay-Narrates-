@@ -65,7 +65,7 @@
 
   <!-- Title Center Overlay -->
   <g text-anchor="middle" font-family="'Space Grotesk', -apple-system, sans-serif">
-    <text x="960" y="525" font-size="28" font-weight="600" fill="#F2F2F2" letter-spacing="8" opacity="0.9">ABHAY — THE BEGINNING</text>
-    <text x="960" y="565" font-family="'Inter', sans-serif" font-size="14" fill="#858585" letter-spacing="3" opacity="0.8">CINEMATIC INTRO · 2026</text>
+    <text x="960" y="525" font-size="28" font-weight="600" fill="#F2F2F2" letter-spacing="8" opacity="0.9">THE FIRST FRAME</text>
+    <text x="960" y="565" font-family="'Inter', sans-serif" font-size="14" fill="#858585" letter-spacing="3" opacity="0.8">PERSONAL FILM · 2026</text>
   </g>
 </svg>
