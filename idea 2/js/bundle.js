@@ -36,7 +36,7 @@
       roles: ['EDITING', 'VISUAL STORYTELLING', 'CINEMATOGRAPHY', 'PERSONAL FILM'],
       toolsUsed: ['ADOBE PREMIERE PRO', 'ADOBE AFTER EFFECTS'],
       videoSrc: 'assets/video/project-1.mp4',
-      posterSrc: 'assets/images/featured-project-poster.jpg',
+      posterSrc: 'assets/images/abhay-poster.jpg',
       aspectRatio: '16:9',
       shortDescription: "A cinematic introduction to my journey from consuming stories to creating them. A personal visual essay about the gap between inspiration and action — and the decision to finally start creating. Shot and edited as the first step in my journey as a video editor, cinematographer, and filmmaker.",
       processNotes: [
@@ -356,22 +356,18 @@
     if (video) {
       if (video.readyState >= 1) {
         hasRealVideo = true;
-        if (canvasFallback) canvasFallback.style.display = 'none';
       }
 
       video.addEventListener('loadedmetadata', () => {
         hasRealVideo = true;
-        if (canvasFallback) canvasFallback.style.display = 'none';
       });
 
       video.addEventListener('loadeddata', () => {
         hasRealVideo = true;
-        if (canvasFallback) canvasFallback.style.display = 'none';
       });
 
       video.addEventListener('canplay', () => {
         hasRealVideo = true;
-        if (canvasFallback) canvasFallback.style.display = 'none';
       });
 
       video.addEventListener('error', () => {
@@ -382,6 +378,7 @@
       // Synchronize with native video state events
       video.addEventListener('play', () => {
         hasRealVideo = true;
+        container.classList.add('has-played');
         if (canvasFallback) canvasFallback.style.display = 'none';
         updatePlayStateUI(true);
       });
@@ -392,6 +389,7 @@
 
       video.addEventListener('ended', () => {
         updatePlayStateUI(false);
+        container.classList.remove('has-played');
         if (progressBar) progressBar.style.width = '0%';
         if (timecodeDisplay) timecodeDisplay.textContent = '00:00:00:00';
       });
@@ -415,21 +413,25 @@
 
       if (video) {
         if (video.paused || video.ended) {
+          // Hide canvas IMMEDIATELY before play() — critical for Android Chrome
+          // where the canvas hardware layer can block the video surface
+          if (canvasFallback) canvasFallback.style.display = 'none';
+
           const playPromise = video.play();
           if (playPromise !== undefined) {
             playPromise.then(() => {
               hasRealVideo = true;
-              if (canvasFallback) canvasFallback.style.display = 'none';
               updatePlayStateUI(true);
             }).catch(() => {
-              // Retry muted if iOS blocks unmuted playback
+              // Retry muted if iOS/Android blocks unmuted autoplay
               video.muted = true;
               if (muteButton) muteButton.textContent = 'UNMUTE';
               video.play().then(() => {
                 hasRealVideo = true;
-                if (canvasFallback) canvasFallback.style.display = 'none';
                 updatePlayStateUI(true);
               }).catch(() => {
+                // Only show canvas fallback if video truly cannot play
+                if (canvasFallback) canvasFallback.style.display = 'block';
                 canvasController?.start();
                 updatePlayStateUI(true);
               });

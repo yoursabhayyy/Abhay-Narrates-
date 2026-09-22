@@ -380,18 +380,27 @@
   object-fit: cover;
 }
 
+/* Video element must have z-index above background but visible on Android hardware overlay */
+video.media-layer {
+  z-index: 0;
+}
+
 .poster-fallback {
   z-index: 1;
   transition: opacity var(--transition-slow);
   pointer-events: none;
 }
 
+/* Canvas fallback sits above poster but is hidden by default; only shown when real video fails to load */
 .canvas-fallback {
   z-index: 2;
   pointer-events: none;
+  display: none;
 }
 
-.project-media-container.is-playing .poster-fallback {
+/* Once video is playing or has started playing, hide the initial static poster */
+.project-media-container.is-playing .poster-fallback,
+.project-media-container.has-played .poster-fallback {
   opacity: 0;
   pointer-events: none;
 }
