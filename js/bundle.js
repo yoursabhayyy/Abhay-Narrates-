@@ -36,7 +36,7 @@
       roles: ['EDITING', 'VISUAL STORYTELLING', 'CINEMATOGRAPHY', 'PERSONAL FILM'],
       toolsUsed: ['ADOBE PREMIERE PRO', 'ADOBE AFTER EFFECTS'],
       videoSrc: 'assets/video/project-1.mp4',
-      posterSrc: 'assets/images/featured-project-poster.jpg',
+      posterSrc: 'assets/images/abhay-poster.jpg',
       aspectRatio: '16:9',
       shortDescription: "A cinematic introduction to my journey from consuming stories to creating them. A personal visual essay about the gap between inspiration and action — and the decision to finally start creating. Shot and edited as the first step in my journey as a video editor, cinematographer, and filmmaker.",
       processNotes: [

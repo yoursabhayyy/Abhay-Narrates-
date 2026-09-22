@@ -19,7 +19,7 @@ export const projects = [
     
     // Video and imagery sources
     videoSrc: 'assets/video/project-1.mp4',
-    posterSrc: 'assets/images/featured-project-poster.jpg',
+    posterSrc: 'assets/images/abhay-poster.jpg',
     aspectRatio: '16:9',
     
     // Honest project narrative & breakdown
