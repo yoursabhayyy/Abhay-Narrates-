@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; background: #000; }
+  body, html { width: 1920px; height: 1080px; }
+  video {
+    width: 1920px;
+    height: 1080px;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+</head>
+<body>
+<video id="v" src="/assets/video/project-1.mp4" muted playsinline></video>
+<script>
+  const video = document.getElementById('v');
+  
+  video.onloadedmetadata = () => {
+    console.log('Metadata loaded, duration:', video.duration);
+    // Seek to 3.0 seconds into the video
+    video.currentTime = 3.0;
+  };
+
+  video.onseeked = () => {
+    console.log('Seeked to frame, creating canvas...');
+    const canvas = document.createElement('canvas');
+    canvas.width = 1920;
+    canvas.height = 1080;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, 1920, 1080);
+    
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    
+    fetch('/save-poster', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: dataUrl
+    }).then(res => {
+      document.title = 'SAVED_SUCCESS';
+    }).catch(err => {
+      document.title = 'ERROR_' + err.message;
+    });
+  };
+
+  // Trigger load
+  video.load();
+</script>
+</body>
+</html>

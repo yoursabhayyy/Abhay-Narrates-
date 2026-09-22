@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Metadata -->
+  <title>Abhay Singh — Video Editor</title>
+  <meta name="description" content="Abhay Singh is a video editor and developing filmmaker focused on cinematic editing, storytelling and visual direction.">
+  <meta name="keywords" content="Abhay Singh, Video Editor, Filmmaker, Premiere Pro, After Effects, Illustrator, Post Production, Editorial">
+  <meta name="author" content="Abhay Singh">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Abhay Singh — Video Editor">
+  <meta property="og:description" content="I turn raw footage into stories. Portfolio of video editor Abhay Singh.">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta property="og:site_name" content="Abhay Singh — Portfolio">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Abhay Singh — Video Editor">
+  <meta name="twitter:description" content="I turn raw footage into stories. Portfolio of video editor Abhay Singh.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <!-- Google Fonts: Space Grotesk (Editorial) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/project-modal.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abhay Singh",
+    "jobTitle": "Video Editor",
+    "description": "Video editor and developing filmmaker focused on cinematic editing, storytelling and visual direction.",
+    "knowsAbout": ["Video Editing", "Adobe Premiere Pro", "Adobe After Effects", "Adobe Illustrator", "Storytelling", "Cinematography"]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Film Grain Overlay -->
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <!-- Custom Cinematic Cursor (Desktop only) -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
+  <div id="cursor-follower" class="cursor-follower" aria-hidden="true">
+    <span id="cursor-text" class="cursor-text"></span>
+  </div>
+
+  <!-- Minimal Header / Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#" class="brand-wrapper" aria-label="Abhay Singh Homepage">
+        <span class="brand-name">ABHAY</span>
+        <span class="brand-label">VIDEO EDITOR</span>
+      </a>
+
+      <nav class="nav-links-desktop" aria-label="Main Navigation">
+        <a href="#featured-work" class="nav-link">WORK</a>
+        <a href="#editing-approach" class="nav-link">APPROACH</a>
+        <a href="#tools-section" class="nav-link">TOOLS</a>
+        <a href="#beyond-edit" class="nav-link">BEYOND</a>
+        <a href="#about-section" class="nav-link">ABOUT</a>
+        <a href="#contact-section" class="nav-link">CONTACT</a>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        MENU
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" aria-hidden="true">
+    <div class="mobile-nav-list">
+      <a href="#featured-work" class="mobile-nav-link">WORK</a>
+      <a href="#editing-approach" class="mobile-nav-link">APPROACH</a>
+      <a href="#tools-section" class="mobile-nav-link">TOOLS</a>
+      <a href="#beyond-edit" class="mobile-nav-link">BEYOND</a>
+      <a href="#about-section" class="mobile-nav-link">ABOUT</a>
+      <a href="#contact-section" class="mobile-nav-link">CONTACT</a>
+    </div>
+    <div class="mobile-nav-footer">
+      ABHAY SINGH · VIDEO EDITOR · 2026
+    </div>
+  </div>
+
+  <main>
+    <!-- ====================================================================
+         01. HERO SECTION
+         ==================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-content">
+        
+        <!-- Top Meta HUD Bar -->
+        <div class="hero-meta-bar reveal-on-scroll">
+          <div class="hero-rec-badge">
+            <span class="rec-dot" aria-hidden="true"></span>
+            <span>REC 4K RAW · 24.00 FPS</span>
+          </div>
+          <div>EDIT SUITE · 2026</div>
+        </div>
+
+        <!-- Identity & Dominant Typography -->
+        <div class="hero-author-name reveal-on-scroll delay-1">ABHAY SINGH</div>
+        
+        <h1 class="hero-title-dominant reveal-on-scroll delay-2">
+          <span>VIDEO</span>
+          <span>EDITOR</span>
+        </h1>
+
+        <!-- Secondary Creative Disciplines -->
+        <div class="hero-disciplines-subtle reveal-on-scroll delay-3">
+          <span>Writer</span> · <span>Cinematographer</span>
+        </div>
+
+        <!-- Supporting Statement -->
+        <p class="hero-statement reveal-on-scroll delay-3">
+          "I turn raw footage into stories."
+        </p>
+
+        <!-- Actions -->
+        <div class="hero-actions reveal-on-scroll delay-4">
+          <a href="#featured-work" class="btn-primary-cinematic">
+            VIEW MY WORK <span aria-hidden="true">→</span>
+          </a>
+          <a href="#about-section" class="btn-secondary-subtle">
+            ABOUT ME <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         02. FEATURED WORK (CENTERPIECE)
+         ==================================================================== -->
+    <section class="featured-work-section" id="featured-work">
+      <div class="container">
+        
+        <div class="work-header-editorial reveal-on-scroll">
+          <div>
+            <div class="section-label">01 / SELECTED PROJECT</div>
+            <h2 class="section-heading-editorial" style="margin-bottom: 0;">FEATURED WORK</h2>
+          </div>
+          <div class="work-statement-understated">
+            "One project. One story."
+          </div>
+        </div>
+
+        <!-- Centerpiece Project Presentation -->
+        <div class="project-card-centerpiece reveal-on-scroll delay-1">
+          
+          <div class="project-meta-top">
+            <span class="project-number">01 / 01</span>
+            <span>THE FIRST FRAME · 2026</span>
+            <span>VIDEO EDITING / VISUAL STORYTELLING</span>
+          </div>
+
+          <!-- Large 16:9 Cinematic Video Player Container -->
+          <div class="project-media-container" data-cursor="play">
+            
+            <!-- Real HTML5 Video element -->
+            <video 
+              id="featured-video" 
+              class="media-layer" 
+              src="assets/video/project-1.mp4"
+              playsinline 
+              webkit-playsinline 
+              x5-playsinline 
+              preload="metadata"
+              poster="assets/images/featured-project-poster.jpg"
+            >
+              <source src="assets/video/project-1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+            <!-- High-Fidelity Static Poster -->
+            <img 
+              src="assets/images/featured-project-poster.jpg" 
+              alt="THE FIRST FRAME · Cinematic Introduction by Abhay Singh" 
+              class="media-layer poster-fallback"
+            >
+
+            <!-- Animated Canvas Preview Loop (Procedural Fallback) -->
+            <canvas id="canvas-preview-fallback" class="media-layer canvas-fallback" aria-hidden="true"></canvas>
+
+            <!-- Big Central Play Button -->
+            <button class="play-overlay-button" id="video-play-overlay" aria-label="Play Project Video">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+
+            <!-- Custom Cinematic Controls Bar -->
+            <div class="player-controls-bar">
+              <div class="progress-track" id="video-progress-container" role="progressbar" aria-label="Video timeline">
+                <div class="progress-fill" id="video-progress-bar"></div>
+              </div>
+
+              <div class="controls-row">
+                <div class="controls-left">
+                  <button class="control-btn" id="video-play-btn" aria-label="Toggle Play/Pause">
+                    <span>PLAY</span>
+                  </button>
+                  <span class="timecode-label" id="player-timecode">00:00:00:00</span>
+                </div>
+
+                <div class="controls-right">
+                  <button class="control-btn" id="video-mute-btn" aria-label="Mute or Unmute audio">
+                    UNMUTE
+                  </button>
+                  <button class="control-btn" id="video-fullscreen-btn" aria-label="Toggle Fullscreen">
+                    EXPAND
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Project Information & Editorial Breakdown -->
+          <div class="project-info-grid">
+            <div class="project-main-info">
+              <h3 class="project-title">THE FIRST FRAME</h3>
+              
+              <p class="project-description">
+                A cinematic introduction to my journey from consuming stories to creating them. A personal visual essay about the gap between inspiration and action — and the decision to finally start creating. Shot and edited as the first step in my journey as a video editor, cinematographer, and filmmaker.
+              </p>
+
+              <!-- Honest Roles Tagging -->
+              <div class="project-roles-bar">
+                <span class="role-pill">EDITING</span>
+                <span class="role-pill">VISUAL STORYTELLING</span>
+                <span class="role-pill">CINEMATOGRAPHY</span>
+                <span class="role-pill">PERSONAL FILM</span>
+              </div>
+            </div>
+
+            <!-- Workflow Detail Action -->
+            <div class="project-actions-side">
+              <button 
+                class="btn-inspect-workflow" 
+                data-open-project 
+                data-project-id="project-01"
+                aria-label="Inspect project workflow and process notes"
+              >
+                PROJECT BREAKDOWN <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         03. EDITING APPROACH (THE EDIT)
+         ==================================================================== -->
+    <section class="approach-section" id="editing-approach">
+      <div class="container">
+        
+        <div class="section-label reveal-on-scroll">02 / PHILOSOPHY</div>
+        <h2 class="section-heading-editorial reveal-on-scroll">THE EDIT</h2>
+
+        <div class="approach-quote reveal-on-scroll delay-1">
+          "Editing is where story, rhythm and emotion meet."
+        </div>
+
+        <div class="principles-grid">
+          <!-- Principle 1: Story -->
+          <div class="principle-card reveal-on-scroll delay-1">
+            <div class="principle-header">
+              <h3 class="principle-title">STORY</h3>
+              <span class="principle-index">01</span>
+            </div>
+            <div class="principle-statement">Finding the narrative inside the footage.</div>
+            <p class="principle-body">
+              Every sequence must serve an emotional or conceptual purpose. Editing is not assembling fragments—it is excavating the underlying truth of the scene and eliminating everything that dilutes it.
+            </p>
+          </div>
+
+          <!-- Principle 2: Rhythm -->
+          <div class="principle-card reveal-on-scroll delay-2">
+            <div class="principle-header">
+              <h3 class="principle-title">RHYTHM</h3>
+              <span class="principle-index">02</span>
+            </div>
+            <div class="principle-statement">Knowing when a shot should stay — and when it should move.</div>
+            <p class="principle-body">
+              Pacing is musical. The duration of a cut dictates breathing room, tension, and release. True rhythm comes from listening to the internal heartbeat of a performance.
+            </p>
+          </div>
+
+          <!-- Principle 3: Emotion -->
+          <div class="principle-card reveal-on-scroll delay-3">
+            <div class="principle-header">
+              <h3 class="principle-title">EMOTION</h3>
+              <span class="principle-index">03</span>
+            </div>
+            <div class="principle-statement">Using timing, sound and image to shape how a moment feels.</div>
+            <p class="principle-body">
+              A cut is an emotional contract with the viewer. By interweaving precise image selection with deliberate sound design, editorial timing shapes empathy.
+            </p>
+          </div>
+
+          <!-- Principle 4: Visual Language -->
+          <div class="principle-card reveal-on-scroll delay-4">
+            <div class="principle-header">
+              <h3 class="principle-title">VISUAL LANGUAGE</h3>
+              <span class="principle-index">04</span>
+            </div>
+            <div class="principle-statement">Building continuity and meaning through images.</div>
+            <p class="principle-body">
+              Angles, eyelines, spatial geography, and lens choice speak a silent grammar. An editor orchestrates these cues so the visual progression feels instinctive.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         04. TOOLS SECTION
+         ==================================================================== -->
+    <section class="tools-section" id="tools-section">
+      <div class="container">
+        
+        <div class="section-label reveal-on-scroll">03 / WORKFLOW</div>
+        <h2 class="section-heading-editorial reveal-on-scroll">TOOLS I USE</h2>
+
+        <p class="tools-intro reveal-on-scroll delay-1">
+          No arbitrary skill percentages. Each tool in my post-production pipeline serves a specific, deliberate role in transforming raw media into finished cinema.
+        </p>
+
+        <div class="tools-stack">
+          <!-- Premiere Pro -->
+          <div class="tool-card reveal-on-scroll delay-1" data-tool="premiere-pro">
+            <div class="tool-icon-wrapper">
+              <img src="assets/icons/pr.svg" alt="Adobe Premiere Pro Mark" class="tool-icon">
+            </div>
+            <div class="tool-identity">
+              <span class="tool-name">PREMIERE PRO</span>
+              <span class="tool-category-badge">EDITING</span>
+            </div>
+            <div class="tool-purpose-box">
+              <div class="tool-purpose-headline">Primary editing tool.</div>
+              <div class="tool-workflow-text">Assembly, pacing, dialogue rhythm, scene construction and multi-track audio synchronization.</div>
+            </div>
+            <div class="tool-badge-pill">PRIMARY NLE</div>
+          </div>
+
+          <!-- After Effects -->
+          <div class="tool-card reveal-on-scroll delay-2" data-tool="after-effects">
+            <div class="tool-icon-wrapper">
+              <img src="assets/icons/ae.svg" alt="Adobe After Effects Mark" class="tool-icon">
+            </div>
+            <div class="tool-identity">
+              <span class="tool-name">AFTER EFFECTS</span>
+              <span class="tool-category-badge">MOTION / VFX</span>
+            </div>
+            <div class="tool-purpose-box">
+              <div class="tool-purpose-headline">Motion graphics, compositing and visual effects.</div>
+              <div class="tool-workflow-text">Cinematic titles, screen replacements, camera tracking, and atmospheric optical cleanup.</div>
+            </div>
+            <div class="tool-badge-pill">COMPOSITING</div>
+          </div>
+
+          <!-- Illustrator -->
+          <div class="tool-card reveal-on-scroll delay-3" data-tool="illustrator">
+            <div class="tool-icon-wrapper">
+              <img src="assets/icons/ai.svg" alt="Adobe Illustrator Mark" class="tool-icon">
+            </div>
+            <div class="tool-identity">
+              <span class="tool-name">ILLUSTRATOR</span>
+              <span class="tool-category-badge">GRAPHIC DESIGN</span>
+            </div>
+            <div class="tool-purpose-box">
+              <div class="tool-purpose-headline">Graphic elements, design assets and visual development.</div>
+              <div class="tool-workflow-text">Vector branding, storyboard elements, and typographic treatment engineered for motion.</div>
+            </div>
+            <div class="tool-badge-pill">DESIGN ASSETS</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         05. BEYOND THE EDIT
+         ==================================================================== -->
+    <section class="beyond-section" id="beyond-edit">
+      <div class="container">
+        
+        <div class="section-label reveal-on-scroll">04 / PERSPECTIVE</div>
+        <h2 class="section-heading-editorial reveal-on-scroll">BEYOND THE EDIT</h2>
+
+        <div class="beyond-concept-box reveal-on-scroll delay-1">
+          <div class="beyond-hierarchy-flow">
+            
+            <!-- Writing -->
+            <div class="flow-step-card">
+              <span class="flow-step-label">DISCIPLINE 01</span>
+              <span class="flow-step-name">WRITING</span>
+              <span class="flow-step-impact">Story & Structure</span>
+            </div>
+
+            <div class="flow-arrow-indicator" aria-hidden="true">→</div>
+
+            <!-- Cinematography -->
+            <div class="flow-step-card">
+              <span class="flow-step-label">DISCIPLINE 02</span>
+              <span class="flow-step-name">CINEMATOGRAPHY</span>
+              <span class="flow-step-impact">Visual Language & Light</span>
+            </div>
+
+            <div class="flow-arrow-indicator" aria-hidden="true">→</div>
+
+            <!-- Editing (Centerpiece) -->
+            <div class="flow-step-card flow-step-centerpiece">
+              <span class="flow-step-label">CORE CRAFT</span>
+              <span class="flow-step-name">EDITING</span>
+              <span class="flow-step-impact">Brings Story, Image & Rhythm Together</span>
+            </div>
+
+          </div>
+
+          <div class="beyond-narrative-footer">
+            While editing is my primary focus, my perspective is shaped by writing and cinematography. Understanding how narrative is written on the page and how light is captured in the camera allows me to make sharper, more instinctive decisions at the cutting table.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         06. ABOUT SECTION
+         ==================================================================== -->
+    <section class="about-section" id="about-section">
+      <div class="container">
+        
+        <div class="section-label reveal-on-scroll">05 / ABOUT</div>
+        
+        <div class="about-editorial-grid">
+          <div class="about-profile-badge reveal-on-scroll">
+            <div class="about-image-wrapper">
+              <img 
+                src="assets/images/profile.jpg" 
+                alt="Abhay Singh — Video Editor & Filmmaker" 
+                class="about-profile-img"
+                width="1254" 
+                height="1254"
+                loading="lazy"
+              >
+            </div>
+            <h2 class="about-author-headline">ABHAY SINGH</h2>
+            <div class="about-sub-disciplines">Video Editor & Filmmaker</div>
+          </div>
+
+          <div class="about-body-column reveal-on-scroll delay-1">
+            <blockquote class="about-manifesto-quote">
+              "I’m interested in the space between one shot and the next — where rhythm, emotion and story come together."
+            </blockquote>
+
+            <p class="about-text-paragraph">
+              Editing is currently my primary focus. It is the craft where narrative structure and technical precision converge. Through cutting, I explore how pacing alters perception and how sound design gives visual moments physical gravity.
+            </p>
+
+            <p class="about-text-paragraph">
+              Writing helps me understand character motivation and thematic arcs. Cinematography trains my eye for composition, texture, and lens perspective. Together, these disciplines inform my long-term ambition: directing and comprehensive filmmaking.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         07. CURRENT DIRECTION (CURRENTLY BUILDING)
+         ==================================================================== -->
+    <section class="direction-section" id="current-direction">
+      <div class="container">
+        
+        <div class="section-label reveal-on-scroll">06 / GROWTH TRAJECTORY</div>
+        <h2 class="section-heading-editorial reveal-on-scroll">CURRENTLY BUILDING</h2>
+
+        <div class="direction-items-row">
+          <div class="direction-box reveal-on-scroll delay-1">
+            <span class="direction-stage">ACTIVE CRAFT</span>
+            <span class="direction-discipline-name">VIDEO EDITING</span>
+          </div>
+          <div class="direction-box reveal-on-scroll delay-2">
+            <span class="direction-stage">IN DEVELOPMENT</span>
+            <span class="direction-discipline-name">WRITING</span>
+          </div>
+          <div class="direction-box reveal-on-scroll delay-3">
+            <span class="direction-stage">IN DEVELOPMENT</span>
+            <span class="direction-discipline-name">CINEMATOGRAPHY</span>
+          </div>
+          <div class="direction-box reveal-on-scroll delay-4">
+            <span class="direction-stage">LONG-TERM HORIZON</span>
+            <span class="direction-discipline-name">FILMMAKING</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         08. CONTACT SECTION
+         ==================================================================== -->
+    <section class="contact-section" id="contact-section">
+      <div class="container contact-layout-editorial">
+        
+        <div class="section-label reveal-on-scroll">07 / COLLABORATION</div>
+
+        <div class="reveal-on-scroll delay-1">
+          <p style="text-transform: uppercase; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.15em; margin-bottom: 0.5rem; color: var(--color-text-muted);">
+            Have a project in mind?
+          </p>
+          <h2 class="contact-heading-massive">
+            LET'S MAKE<br>SOMETHING.
+          </h2>
+        </div>
+
+        <div class="contact-actions-bar reveal-on-scroll delay-2">
+          <a href="mailto:abhaysingh.films@gmail.com" class="btn-primary-cinematic">
+            GET IN TOUCH <span aria-hidden="true">→</span>
+          </a>
+
+          <button class="copy-email-box" id="copy-email-btn" aria-label="Copy email address to clipboard">
+            <span>abhaysingh.films@gmail.com</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+
+          <span class="copy-feedback-toast" id="copy-feedback" role="status"></span>
+        </div>
+
+        <div class="social-links-row reveal-on-scroll delay-3">
+          <a href="https://www.instagram.com/yours.abhayyy?stkn=MW05b3RvbWNpejZvcA==" target="_blank" rel="noopener noreferrer" class="social-link">
+            INSTAGRAM ↗
+          </a>
+          <a href="https://www.linkedin.com/in/abhay-singh-412205427?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="social-link">
+            LINKEDIN ↗
+          </a>
+          <a href="mailto:abhaysingh.films@gmail.com" class="social-link">
+            EMAIL ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       09. FOOTER
+       ==================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-row">
+        <div>
+          <div class="footer-brand">ABHAY SINGH</div>
+          <div class="footer-role-line">VIDEO EDITOR · WRITER · CINEMATOGRAPHER</div>
+        </div>
+
+        <div class="social-links-row" style="margin-top: 0;">
+          <a href="https://www.instagram.com/yours.abhayyy?stkn=MW05b3RvbWNpejZvcA==" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
+          <a href="https://www.linkedin.com/in/abhay-singh-412205427?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+          <a href="mailto:abhaysingh.films@gmail.com" class="social-link">Email</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div>© <span id="copyright-year">2026</span> ABHAY SINGH. ALL RIGHTS RESERVED.</div>
+        <div>CINEMATIC POST-PRODUCTION PORTFOLIO</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================================
+       REUSABLE PROJECT DETAIL MODAL
+       ==================================================================== -->
+  <div id="project-detail-modal" class="modal-container" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel">
+      
+      <div class="modal-top-bar">
+        <span class="modal-meta-label">
+          <span id="modal-project-number">01 / 01</span> · PROJECT WORKFLOW BREAKDOWN
+        </span>
+        <button id="close-project-modal" class="modal-close-btn" aria-label="Close project details">
+          ESC / CLOSE ✕
+        </button>
+      </div>
+
+      <div>
+        <h3 id="modal-project-title" class="modal-project-title">THE FIRST FRAME</h3>
+        <div id="modal-project-roles" class="modal-badges-group"></div>
+        <div id="modal-project-tools" class="modal-badges-group"></div>
+      </div>
+
+      <p id="modal-project-desc" class="modal-description-lead"></p>
+
+      <hr class="modal-section-divider">
+
+      <div>
+        <h4 style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: var(--space-sm);">
+          EDITORIAL & CRAFT NOTES
+        </h4>
+        <div id="modal-project-process" class="modal-process-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Production Script (Works both on web servers and direct local file:// opening) -->
+  <script src="js/bundle.js"></script>
+</body>
+</html>
