@@ -157,22 +157,18 @@ export function initVideoPlayer() {
   if (video) {
     if (video.readyState >= 1) {
       hasRealVideo = true;
-      if (canvasFallback) canvasFallback.style.display = 'none';
     }
 
     video.addEventListener('loadedmetadata', () => {
       hasRealVideo = true;
-      if (canvasFallback) canvasFallback.style.display = 'none';
     });
 
     video.addEventListener('loadeddata', () => {
       hasRealVideo = true;
-      if (canvasFallback) canvasFallback.style.display = 'none';
     });
 
     video.addEventListener('canplay', () => {
       hasRealVideo = true;
-      if (canvasFallback) canvasFallback.style.display = 'none';
     });
 
     video.addEventListener('error', () => {
@@ -180,9 +176,17 @@ export function initVideoPlayer() {
       if (canvasFallback) canvasFallback.style.display = 'block';
     });
 
-    // Synchronize with native video state events
+    // Synchronize UI exclusively with native video state events
     video.addEventListener('play', () => {
       hasRealVideo = true;
+      container.classList.add('has-played');
+      if (canvasFallback) canvasFallback.style.display = 'none';
+      updatePlayStateUI(true);
+    });
+
+    video.addEventListener('playing', () => {
+      hasRealVideo = true;
+      container.classList.add('has-played');
       if (canvasFallback) canvasFallback.style.display = 'none';
       updatePlayStateUI(true);
     });
@@ -193,6 +197,7 @@ export function initVideoPlayer() {
 
     video.addEventListener('ended', () => {
       updatePlayStateUI(false);
+      container.classList.remove('has-played');
       if (progressBar) progressBar.style.width = '0%';
       if (timecodeDisplay) timecodeDisplay.textContent = '00:00:00:00';
     });
@@ -210,27 +215,22 @@ export function initVideoPlayer() {
 
   function togglePlay(e) {
     if (e) {
-      e.preventDefault();
       e.stopPropagation();
     }
 
     if (video) {
       if (video.paused || video.ended) {
+        if (canvasFallback) canvasFallback.style.display = 'none';
+
         const playPromise = video.play();
         if (playPromise !== undefined) {
-          playPromise.then(() => {
-            hasRealVideo = true;
-            if (canvasFallback) canvasFallback.style.display = 'none';
-            updatePlayStateUI(true);
-          }).catch(() => {
-            // Retry muted if iOS blocks unmuted playback
+          playPromise.catch((err) => {
+            console.warn('Playback with audio restricted, retrying muted:', err);
             video.muted = true;
             if (muteButton) muteButton.textContent = 'UNMUTE';
-            video.play().then(() => {
-              hasRealVideo = true;
-              if (canvasFallback) canvasFallback.style.display = 'none';
-              updatePlayStateUI(true);
-            }).catch(() => {
+            video.play().catch((err2) => {
+              console.error('Video playback failed:', err2);
+              if (canvasFallback) canvasFallback.style.display = 'block';
               canvasController?.start();
               updatePlayStateUI(true);
             });
@@ -238,7 +238,6 @@ export function initVideoPlayer() {
         }
       } else {
         video.pause();
-        updatePlayStateUI(false);
       }
     } else {
       const nextState = !isPlaying;

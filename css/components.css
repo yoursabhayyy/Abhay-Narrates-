@@ -365,7 +365,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background-color: #07080A;
+  background-color: #000000;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
   overflow: hidden;
@@ -380,36 +380,40 @@
   object-fit: cover;
 }
 
-/* Video element must have z-index above background but visible on Android hardware overlay */
+/* Layer 1: Native HTML5 Video */
 video.media-layer {
-  z-index: 0;
-}
-
-.poster-fallback {
   z-index: 1;
-  transition: opacity var(--transition-slow);
-  pointer-events: none;
+  display: block;
 }
 
-/* Canvas fallback sits above poster but is hidden by JS when real video plays */
-.canvas-fallback {
+/* Layer 2: Custom Poster (Visible initially, fades out when video starts, stays hidden when paused) */
+.poster-fallback {
   z-index: 2;
+  opacity: 1;
   pointer-events: none;
-  display: none; /* Hidden by default; only shown when video fails to load */
+  transition: opacity var(--transition-base);
 }
 
+.project-media-container.has-played .poster-fallback,
 .project-media-container.is-playing .poster-fallback {
   opacity: 0;
   pointer-events: none;
 }
 
-/* Player Custom Controls Bar */
+/* Layer 3: Procedural Canvas Fallback (Hidden unless video fails) */
+.canvas-fallback {
+  z-index: 3;
+  pointer-events: none;
+  display: none;
+}
+
+/* Layer 4: Player Custom Controls Bar */
 .player-controls-bar {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 15;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
   padding: 1.5rem var(--container-pad) 1rem;
   display: flex;
@@ -477,29 +481,33 @@ video.media-layer {
   letter-spacing: 0.08em;
 }
 
-/* Central Play Overlay Button */
+/* Layer 5: Central Play Overlay Button */
 .play-overlay-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 5;
+  z-index: 10;
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: rgba(10, 10, 10, 0.65);
+  background: rgba(10, 10, 10, 0.7);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--color-border-hover);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-primary);
-  transition: transform var(--transition-base), background-color var(--transition-fast), opacity var(--transition-base);
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform var(--transition-base), background-color var(--transition-fast), border-color var(--transition-fast), opacity var(--transition-base);
 }
 
 .play-overlay-button:hover {
   transform: translate(-50%, -50%) scale(1.08);
-  background: rgba(20, 20, 20, 0.85);
+  background: rgba(20, 20, 20, 0.9);
   border-color: var(--color-text-primary);
 }
 

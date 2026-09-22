@@ -375,9 +375,17 @@
         if (canvasFallback) canvasFallback.style.display = 'block';
       });
 
-      // Synchronize with native video state events
+      // Synchronize UI exclusively with native video state events
       video.addEventListener('play', () => {
         hasRealVideo = true;
+        container.classList.add('has-played');
+        if (canvasFallback) canvasFallback.style.display = 'none';
+        updatePlayStateUI(true);
+      });
+
+      video.addEventListener('playing', () => {
+        hasRealVideo = true;
+        container.classList.add('has-played');
         if (canvasFallback) canvasFallback.style.display = 'none';
         updatePlayStateUI(true);
       });
@@ -388,6 +396,7 @@
 
       video.addEventListener('ended', () => {
         updatePlayStateUI(false);
+        container.classList.remove('has-played');
         if (progressBar) progressBar.style.width = '0%';
         if (timecodeDisplay) timecodeDisplay.textContent = '00:00:00:00';
       });
@@ -405,30 +414,21 @@
 
     function togglePlay(e) {
       if (e) {
-        e.preventDefault();
         e.stopPropagation();
       }
 
       if (video) {
         if (video.paused || video.ended) {
-          // Hide canvas IMMEDIATELY before play() — critical for Android Chrome
-          // where the canvas hardware layer can block the video surface
           if (canvasFallback) canvasFallback.style.display = 'none';
 
           const playPromise = video.play();
           if (playPromise !== undefined) {
-            playPromise.then(() => {
-              hasRealVideo = true;
-              updatePlayStateUI(true);
-            }).catch(() => {
-              // Retry muted if iOS/Android blocks unmuted autoplay
+            playPromise.catch((err) => {
+              console.warn('Playback with audio restricted, retrying muted:', err);
               video.muted = true;
               if (muteButton) muteButton.textContent = 'UNMUTE';
-              video.play().then(() => {
-                hasRealVideo = true;
-                updatePlayStateUI(true);
-              }).catch(() => {
-                // Only show canvas fallback if video truly cannot play
+              video.play().catch((err2) => {
+                console.error('Video playback failed:', err2);
                 if (canvasFallback) canvasFallback.style.display = 'block';
                 canvasController?.start();
                 updatePlayStateUI(true);
@@ -437,7 +437,6 @@
           }
         } else {
           video.pause();
-          updatePlayStateUI(false);
         }
       } else {
         const nextState = !isPlaying;
